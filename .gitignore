@@ -2,4 +2,4 @@ data/
 logs/
 .DS_Store
 .env
-*.sql
+mysql/docker-entrypoint-initdb.d/*.sql
