@@ -40,7 +40,6 @@ services:
       - ${VATUSA_SITE}:/var/www/vatusa
       - ${API_SITE}:/var/www/api
     depends_on:
-      - web
       - mysql
 
 volumes:
