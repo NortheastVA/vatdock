@@ -13,7 +13,6 @@ services:
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
       - TZ=${TZ}
     volumes:
-      - ${DATA_SAVE_DIR}/mysql:/var/lib/mysql
       - ${MYSQL_ENTRYPOINT_INITDB}:/docker-entrypoint-initdb.d
     ports:
       - "${MYSQL_PORT}:3306"
@@ -41,7 +40,3 @@ services:
       - ${API_SITE}:/var/www/api
     depends_on:
       - mysql
-
-volumes:
-  mysql:
-    driver: "local"
