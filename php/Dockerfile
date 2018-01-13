@@ -1,6 +1,7 @@
 FROM php:7.2-fpm-alpine
 
-RUN docker-php-ext-install pdo_mysql
+RUN docker-php-ext-install pdo_mysql && \
+    apk add --no-cache mysql-client
 
 COPY ./laravel.ini /usr/local/etc/php/conf.d/
 
