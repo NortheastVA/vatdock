@@ -1,21 +1,16 @@
 version: '2'
 
 services:
-  mysql:
-    build:
-      context: ./mysql
-      args:
-        - MYSQL_VERSION=${MYSQL_VERSION}
+  postgres:
+    image: postgres:10.3-alpine
     environment:
-      - MYSQL_DATABASE=${MYSQL_DATABASE}
-      - MYSQL_USER=${MYSQL_USER}
-      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
-      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
-      - TZ=${TZ}
-    volumes:
-      - ${MYSQL_ENTRYPOINT_INITDB}:/docker-entrypoint-initdb.d
+      - POSTGRES_DB=${POSTGRES_DATABASE}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - PGPASSWORD=${POSTGRES_ROOT_PASSWORD}
     ports:
-      - "${MYSQL_PORT}:3306"
+      - "${POSTGRES_PORT}:5432"
+    restart: unless-stopped
   web:
     build:
       context: ./nginx
@@ -39,4 +34,4 @@ services:
       - ${VATUSA_SITE}:/var/www/vatusa
       - ${API_SITE}:/var/www/api
     depends_on:
-      - mysql
+      - postgres
