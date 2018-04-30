@@ -18,7 +18,7 @@ services:
         - PHP_UPSTREAM_PORT=${NGINX_PHP_UPSTREAM_PORT}
         - PHP_UPSTREAM_CONTAINER=${NGINX_PHP_UPSTREAM_CONTAINER}
     volumes:
-      - ${VATUSA_SITE}:/var/www/vatusa
+      - ${FRONTEND_SITE}:/var/www/frontend
       - ${API_SITE}:/var/www/api
     links:
       - php
@@ -31,7 +31,7 @@ services:
     build:
       context: ./php
     volumes:
-      - ${VATUSA_SITE}:/var/www/vatusa
+      - ${FRONTEND_SITE}:/var/www/frontend
       - ${API_SITE}:/var/www/api
     depends_on:
       - postgres
